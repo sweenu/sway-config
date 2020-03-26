@@ -1,0 +1,22 @@
+#!/bin/sh
+
+function get_current_sink {
+	return $(pactl info | grep -oP "Default Sink: \K.*")
+}
+
+function set_sink {
+	local sink=$1
+	pactl set-default-sink $sink
+}
+
+function move_sink_input {
+	local name=$1
+	local sink=$2
+	pactl move-sink-input $name $sink
+}
+
+function list_sinks {
+	return $(pactl list sinks | grep -oP "Name: \K.*"
+}
+
+main $@
