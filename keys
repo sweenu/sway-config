@@ -128,6 +128,11 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 # decrease output volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
+# Soundcards
+bindsym $mod+{ exec $bin/soundcards -c -p
+bindsym $mod+} exec $bin/soundcards -c -n
+bindsym F8 exec $bin/soundcards -t
+
 # Backlight
 bindsym XF86MonBrightnessUp exec $bin/backlight inc
 bindsym XF86MonBrightnessDown exec $bin/backlight dec

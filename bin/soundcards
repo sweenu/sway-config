@@ -1,0 +1,76 @@
+#!/home/sweenu/.config/sway/bin/pulsectl_venv/bin/python
+import argparse
+from subprocess import run
+
+import pulsectl
+
+
+INTERNAL_CARD_NAME = "alsa_card.pci-0000_00_1f.3"
+
+
+def notify(title, description):
+    run(["notify-send", title, description])
+
+
+def cycle(pulse, direction):
+    server_info = pulse.server_info()
+    default_sink_name = server_info.default_sink_name
+
+    sinks = pulse.sink_list()
+    for index, sink in enumerate(sinks):
+        if sink.name == default_sink_name:
+            default_sink_index = index
+            break
+
+    if direction == "backward":
+        new_sink = sinks[default_sink_index - 1]
+    else:
+        new_sink = sinks[(default_sink_index + 1) % len(sinks)]
+
+    pulse.sink_default_set(new_sink)
+    for sink_input in pulse.sink_input_list():
+        pulse.sink_input_move(sink_input.index, new_sink.index)
+
+    notify("Sound card", new_sink.description)
+
+
+def set_profile(pulse, card, profile):
+    pulse.card_profile_set(card, f"output:{profile}-stereo+input:analog-stereo")
+
+
+def toggle_profile(pulse):
+    internal_card = pulse.get_card_by_name(INTERNAL_CARD_NAME)
+    current_profile = "hdmi" if "hdmi" in internal_card.profile_active.name else "analog"
+
+    if current_profile == "analog":
+        set_profile(pulse, internal_card, "hdmi")
+        notify("Sound Profile", "HDMI")
+    elif current_profile == "hdmi":
+        set_profile(pulse, internal_card, "analog")
+        notify("Sound Profile", "Analog")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Change pulseaudio sinks and profiles")
+    parser.add_argument("-c", "--cycle", action="store_true")
+    parser.add_argument("-t", "--toggle-profile", action="store_true")
+    parser.add_argument("--set-default-profile", action="store_true")
+    parser.add_argument("-p", "--previous", action="store_true")
+    parser.add_argument("-n", "--next", action="store_true")
+    args = parser.parse_args()
+
+    with pulsectl.Pulse("sway") as pulse:
+        if args.cycle:
+            if args.previous:
+                cycle(pulse, "backwards")
+            else:
+                cycle(pulse, "forward")
+        if args.toggle_profile:
+            toggle_profile(pulse)
+        if args.set_default_profile:
+            internal_card = pulse.get_card_by_name(INTERNAL_CARD_NAME)
+            set_profile(pulse, internal_card, "analog")
+
+
+if __name__ == "__main__":
+    main()

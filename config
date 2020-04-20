@@ -1,3 +1,6 @@
+### General
+focus_on_window_activation none
+
 ### Input configuration
 input "1267:32:Elan_Touchpad" {
 	dwt enabled
