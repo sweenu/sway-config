@@ -40,23 +40,23 @@ bindsym $mod+Shift+l move right
 
 ### Workspaces
 # Switch to workspace
-bindsym $mod+a workspace a
-bindsym $mod+s workspace s
-bindsym $mod+d workspace d
-bindsym $mod+f workspace f
-bindsym $mod+u workspace u
-bindsym $mod+i workspace i
-bindsym $mod+o workspace o
-bindsym $mod+p workspace p
+bindsym $mod+a workspace 1:a
+bindsym $mod+s workspace 2:s
+bindsym $mod+d workspace 3:d
+bindsym $mod+f workspace 4:f
+bindsym $mod+u workspace 5:u
+bindsym $mod+i workspace 6:i
+bindsym $mod+o workspace 7:o
+bindsym $mod+p workspace 8:p
 # Move focused container to workspace
-bindsym $mod+Shift+a move container to workspace a
-bindsym $mod+Shift+s move container to workspace s
-bindsym $mod+Shift+d move container to workspace d
-bindsym $mod+Shift+f move container to workspace f
-bindsym $mod+Shift+u move container to workspace u
-bindsym $mod+Shift+i move container to workspace i
-bindsym $mod+Shift+o move container to workspace o
-bindsym $mod+Shift+p move container to workspace p
+bindsym $mod+Shift+a move container to workspace 1:a
+bindsym $mod+Shift+s move container to workspace 2:s
+bindsym $mod+Shift+d move container to workspace 3:d
+bindsym $mod+Shift+f move container to workspace 4:f
+bindsym $mod+Shift+u move container to workspace 5:u
+bindsym $mod+Shift+i move container to workspace 6:i
+bindsym $mod+Shift+o move container to workspace 7:o
+bindsym $mod+Shift+p move container to workspace 8:p
 
 ### Resizing containers
 bindsym $mod+Left resize shrink width 10px
@@ -95,8 +95,8 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Return exec $term
 bindsym $mod+t exec $menu
 bindsym $mod+b exec $browser
-bindsym $mod+m exec $bin/app_or_workspace $music_player music
-bindsym $mod+n exec $bin/app_or_workspace slack slack
+bindsym $mod+n exec $bin/app_or_workspace slack 9:slack
+bindsym $mod+m exec $bin/app_or_workspace $music_player 10:spotify
 
 # Mako
 bindsym $mod+period exec makoctl menu wofi -d -p 'Choose Action: '
@@ -129,8 +129,8 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Soundcards
-bindsym $mod+{ exec $bin/soundcards -c -p
-bindsym $mod+} exec $bin/soundcards -c -n
+bindsym $mod+bracketleft exec $bin/soundcards -c -p
+bindsym $mod+bracketright exec $bin/soundcards -c -n
 bindsym F8 exec $bin/soundcards -t
 
 # Backlight

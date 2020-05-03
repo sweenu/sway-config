@@ -32,21 +32,21 @@ titlebar_border_thickness 0
 titlebar_padding 0
 
 ### Workspaces
-workspace a output DP-1 DP-2 HDMI-A-2
-workspace s output DP-1 DP-2 HDMI-A-2
-workspace d output DP-1 DP-2 HDMI-A-2
-workspace f output DP-1 DP-2 HDMI-A-2
-workspace u output eDP-1
-workspace i output eDP-1
-workspace o output eDP-1
-workspace p output eDP-1
-workspace music output eDP-1
-workspace slack output eDP-1
-workspace telegram output eDP-1
+workspace 1:a output DP-1 DP-2 HDMI-A-2
+workspace 2:s output DP-1 DP-2 HDMI-A-2
+workspace 3:d output DP-1 DP-2 HDMI-A-2
+workspace 4:f output DP-1 DP-2 HDMI-A-2
+workspace 5:u output eDP-1
+workspace 6:i output eDP-1
+workspace 7:o output eDP-1
+workspace 8:p output eDP-1
+workspace 9:slack output eDP-1
+workspace 10:spotify output eDP-1
 
 ### Window rules
-assign [class="Spotify"] workspace music
-assign [class="Slack"] workspace slack
+assign [class="Slack"] workspace 9:slack
+# hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793#issuecomment-468889437
+for_window [class="Spotify"] move to workspace 10:spotify
 
 # focus, enable floating and sticky to Firefox's and Brave's Picture-in-Picture windows
 for_window [title="[Pp]icture[- ]in[- ][Pp]icture"] focus; \
