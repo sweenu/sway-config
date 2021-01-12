@@ -2,13 +2,19 @@
 focus_on_window_activation none
 
 ### Input configuration
-input "1267:32:Elan_Touchpad" {
+input type:touchpad {
 	dwt enabled
 	tap enabled
 	natural_scroll enabled
 }
 input type:keyboard {
 	xkb_layout custom-us
+	xkb_options caps:escape
+	repeat_delay 200
+	repeat_rate 30
+}
+input 1452:591:Keychron_Keychron_K6 {
+    xkb_layout custom-us-keychron
 	xkb_options caps:escape
 	repeat_delay 200
 	repeat_rate 30
@@ -40,27 +46,36 @@ workspace 5:u output eDP-1
 workspace 6:i output eDP-1
 workspace 7:o output eDP-1
 workspace 8:p output eDP-1
-workspace 9:slack output eDP-1
-workspace 10:spotify output eDP-1
+workspace 9: output eDP-1
+workspace 10: output eDP-1
 
 ### Window rules
-assign [class="Slack"] workspace 9:slack
-# hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793#issuecomment-468889437
-for_window [class="Spotify"] move to workspace 10:spotify
+assign [class="Slack"] workspace 9:
+# hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
+for_window [class="Spotify"] move to workspace 10:
 
 # focus, enable floating and sticky to Firefox's and Brave's Picture-in-Picture windows
-for_window [title="[Pp]icture[- ]in[- ][Pp]icture"] focus; \
+for_window [title="^[Pp]icture[- ]in[- ][Pp]icture"] focus; \
 	floating enable; \
 	sticky enable; \
 	resize set width 852 height 480
 
 # open telegram in floating mode, resized, centered and in the scratchpad
-for_window [title="^Telegram"] focus; \
+for_window [title="^Telegram$"] focus; \
 	floating enable; \
 	resize set width 647 height 490; \
 	move position center; \
 	move scratchpad; \
 	scratchpad show
+
+# Make zoom windows (except meeting window) floating
+for_window [app_id="zoom"] floating enable
+
+# Make Firefox sharing windows floating
+for_window [app_id="firefox" title="Firefox . Sharing Indicator"] kill
+
+# SweetHome3D drag fix
+no_focus [class="com-eteks-sweethome3d-SweetHome3D" instance="sun-awt-X11-XWindowPeer"]
 
 ### Autostart
 output * bg ~/Pictures/_KP09754-2.jpg fill

@@ -1,4 +1,4 @@
-#!/home/sweenu/.config/sway/bin/pulsectl_venv/bin/python
+#!/usr/bin/env python
 import argparse
 from subprocess import run
 

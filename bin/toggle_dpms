@@ -1,6 +1,6 @@
 #!/bin/sh
 function dpms_is_on {
-	test $(swaymsg -rt get_outputs | jq '.[] | select(.name=="eDP-1").dpms') = true	
+	test $(swaymsg -rt get_outputs | jq '.[] | select(.name=="eDP-1").dpms') = true
 }
 
 function main {
