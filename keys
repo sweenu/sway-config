@@ -151,9 +151,9 @@ bindsym Print exec grim ~/Pictures/$(date '+screenshot_%Y-%m-%d-%H%M%S.png') && 
 bindsym $mod+Print exec slurp | grim -g - ~/Pictures/$(date '+screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Media control
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl --player="spotify,%any" play-pause
+bindsym XF86AudioNext exec playerctl --player="spotify,%any" next
+bindsym XF86AudioPrev exec playerctl --player="spotify,%any" previous
 
 bindsym $mod+g mode "media"
 mode "media" {
