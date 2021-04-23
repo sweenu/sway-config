@@ -43,17 +43,19 @@ workspace 1:a output DP-1 DP-2 HDMI-A-2
 workspace 2:s output DP-1 DP-2 HDMI-A-2
 workspace 3:d output DP-1 DP-2 HDMI-A-2
 workspace 4:f output DP-1 DP-2 HDMI-A-2
-workspace 5:u output eDP-1
-workspace 6:i output eDP-1
-workspace 7:o output eDP-1
-workspace 8:p output eDP-1
-workspace 9: output eDP-1
-workspace 10: output eDP-1
+workspace 5: output DP-1 DP-2 HDMI-A-2
+workspace 6:u output eDP-1
+workspace 7:i output eDP-1
+workspace 8:o output eDP-1
+workspace 9:p output eDP-1
+workspace 10: output eDP-1
+workspace 11: output eDP-1
 
 ### Window rules
-assign [class="Slack"] workspace 9:
+assign [class="Mailspring"] workspace 5:
+assign [class="Slack"] workspace 10:
 # hack around spotify's wm_class bug: https://github.com/swaywm/sway/issues/3793
-for_window [class="Spotify"] move to workspace 10:
+for_window [class="Spotify"] move to workspace 11:
 
 # focus, enable floating and sticky to Firefox's and Brave's Picture-in-Picture windows
 for_window [title="^[Pp]icture[- ]in[- ][Pp]icture"] focus; \

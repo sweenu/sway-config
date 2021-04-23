@@ -5,6 +5,7 @@ set $bin ~/.config/sway/bin
 set $term alacritty
 set $browser firefox
 set $music_player spotify
+set $mail_client mailspring
 set $menu wofi --show drun --allow-images --insensitive --no-actions 'swaymsg exec -- {cmd}'
 
 ### Basics
@@ -44,19 +45,19 @@ bindsym $mod+a workspace 1:a
 bindsym $mod+s workspace 2:s
 bindsym $mod+d workspace 3:d
 bindsym $mod+f workspace 4:f
-bindsym $mod+u workspace 5:u
-bindsym $mod+i workspace 6:i
-bindsym $mod+o workspace 7:o
-bindsym $mod+p workspace 8:p
+bindsym $mod+u workspace 6:u
+bindsym $mod+i workspace 7:i
+bindsym $mod+o workspace 8:o
+bindsym $mod+p workspace 9:p
 # Move focused container to workspace
 bindsym $mod+Shift+a move container to workspace 1:a
 bindsym $mod+Shift+s move container to workspace 2:s
 bindsym $mod+Shift+d move container to workspace 3:d
 bindsym $mod+Shift+f move container to workspace 4:f
-bindsym $mod+Shift+u move container to workspace 5:u
-bindsym $mod+Shift+i move container to workspace 6:i
-bindsym $mod+Shift+o move container to workspace 7:o
-bindsym $mod+Shift+p move container to workspace 8:p
+bindsym $mod+Shift+u move container to workspace 6:u
+bindsym $mod+Shift+i move container to workspace 7:i
+bindsym $mod+Shift+o move container to workspace 8:o
+bindsym $mod+Shift+p move container to workspace 9:p
 
 ### Resizing containers
 bindsym $mod+Left resize shrink width 10px
@@ -95,8 +96,9 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Return exec $term
 bindsym $mod+t exec $menu
 bindsym $mod+b exec $browser
-bindsym $mod+n exec $bin/app_or_workspace slack 9:
-bindsym $mod+m exec $bin/app_or_workspace $music_player 10:
+bindsym $mod+Shift+m exec $bin/app_or_workspace $mail_client 5:
+bindsym $mod+n exec $bin/app_or_workspace slack 10:
+bindsym $mod+m exec $bin/app_or_workspace $music_player 11:
 
 # Mako
 bindsym $mod+period exec makoctl menu wofi -d -p 'Choose Action: '
