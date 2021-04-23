@@ -26,11 +26,12 @@ bar {
 }
 
 ### Appareance
-gaps inner 10
-gaps outer 10
-default_border pixel 3
+gaps inner 20
+# gaps outer 10
+default_border pixel 1
+# default_border none
 
-client.focused #4C7899 #4C7899 #FFFFFF #4C7899
+client.focused #FFFFFF #FFFFFF #FFFFFF #FFFFFF
 
 # disable title bars
 font DejaVu 0
@@ -74,11 +75,8 @@ for_window [app_id="zoom"] floating enable
 # Make Firefox sharing windows floating
 for_window [app_id="firefox" title="Firefox . Sharing Indicator"] kill
 
-# SweetHome3D drag fix
-no_focus [class="com-eteks-sweethome3d-SweetHome3D" instance="sun-awt-X11-XWindowPeer"]
-
 ### Autostart
-output * bg ~/Pictures/_KP09754-2.jpg fill
+output * bg ~/Pictures/sunshine_through_mountains_wallpaper-2560×1440.jpg fill
 exec swayidle -w \
 	before-sleep 'swaylock -f' \
 	lock 'swaylock -f'
