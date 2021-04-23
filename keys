@@ -143,8 +143,8 @@ bindsym $mod+Shift+Up exec light -s $($ddcci_device_query) -A 5 || $notify_error
 bindsym $mod+Shift+Down exec light -s $($ddcci_device_query) -U 5 || $notify_error
 
 # turn off laptop screen
-bindsym F7 exec $bin/toggle_dpms eDP-1
-bindsym XF86Display exec $bin/toggle_dpms eDP-1
+bindsym F7 exec swaymsg output eDP-1 dpms toggle
+bindsym XF86Display exec swaymsg output eDP-1 dpms toggle
 
 # Screenshot
 bindsym Print exec grim ~/Pictures/$(date '+screenshot_%Y-%m-%d-%H%M%S.png') && notify-send "Screenshot" "Screenshot saved"
